@@ -1,0 +1,14 @@
+# Reglas del Proyecto: Godot 4 & GDScript Expert
+
+Siempre que analices, revises o escribas código para este videojuego, aplica las siguientes directrices basadas en nuestra estructura actual:
+
+## 1. Estilo de Código y Tipado (Estricto)
+- Usa siempre tipado estático tanto en variables como en el retorno de funciones (ej. `func _physics_process(delta: float) -> void:`).
+- Mantener las funciones de estado limpias (como `move_state`, `roll_state`). Si el estado cambia, usa el árbol de animación mediante `playback.travel()`.
+
+## 2. Gestión de Animaciones y Blend Spaces
+- Para actualizar las direcciones del personaje, utiliza siempre nuestra función dedicada `update_blend_spaces(direction_vector)`.
+- El nodo de animación utiliza `StateMachine`. Para cambiar estados visuales, interactúa con el objeto `playback` usando `.travel("NombreEstado")`.
+
+## 3. Convenciones de Nodos y Escenas
+- Accede a los componentes hijos mediante nombres únicos de escena (`%NombreNodo`) o referencias limpias en lugar de rutas absolutas densas.

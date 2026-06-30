@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c85wd74j0kyda"]
+
+[ext_resource type="Texture2D" uid="uid://dnx5jr3weewi4" path="res://Image/Gemini_Generated_Image_cwho6scwho6scwho.png" id="1_yp38q"]
+[ext_resource type="Script" path="res://Play/game_over.gd" id="2_game_over"]
+
+[node name="Game over" type="Control" unique_id=1157827825]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_game_over")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=85674789]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -90.5
+offset_right = 3019.9998
+offset_bottom = 1679.4999
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_yp38q")

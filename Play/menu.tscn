@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ds28rnvy8tni0"]
+
+[ext_resource type="Script" uid="uid://dd0g8lmiaaoel" path="res://Play/menu.gd" id="1_5kb8o"]
+[ext_resource type="Texture2D" uid="uid://ds6mm0yxweyfe" path="res://Image/Gemini_Generated_Image_fpbf0bfpbf0bfpbf.png" id="2_avlox"]
+
+[node name="Menu" type="Control" unique_id=655907212]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5kb8o")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=93271771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.21176471)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=575951755]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_avlox")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1117723363]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.372
+anchor_top = 0.586
+anchor_right = 0.372
+anchor_bottom = 0.586
+offset_left = 120.96
+offset_top = -31.480003
+offset_right = 181.95999
+offset_bottom = 38.519997
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="Button" parent="VBoxContainer" unique_id=1626421241]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.815743, 0.9396921, 0.39148885, 1)
+theme_override_colors/font_hover_color = Color(0.3254902, 0.9490196, 0.9490196, 1)
+theme_override_font_sizes/font_size = 5
+text = "                                       "
+
+[node name="exit" type="Button" parent="VBoxContainer" unique_id=1071949804]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]

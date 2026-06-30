@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bsika8y0yjfb1"]
+
+[ext_resource type="Script" uid="uid://cqqewkx4ggfcf" path="res://canvas_layer.gd" id="1_fsbdh"]
+[ext_resource type="Texture2D" uid="uid://vs0g3ik0v0m" path="res://MV Icons Letter Buttons/Individual Icons/green-!triangle.png" id="2_n6wdb"]
+[ext_resource type="Texture2D" uid="uid://bxugsikt1ivie" path="res://MV Icons Letter Buttons/Individual Icons/green-!arrowleft.png" id="3_g3huw"]
+[ext_resource type="Texture2D" uid="uid://b68gfdsxnnw33" path="res://MV Icons Letter Buttons/Individual Icons/green-!arrowright.png" id="4_280g2"]
+[ext_resource type="Texture2D" uid="uid://dxsescnw1ji05" path="res://MV Icons Letter Buttons/Individual Icons/green-!arrowup.png" id="5_5cw7b"]
+[ext_resource type="Texture2D" uid="uid://cqsa7kto2nqug" path="res://MV Icons Letter Buttons/Individual Icons/green-!square.png" id="6_as1ww"]
+[ext_resource type="Texture2D" uid="uid://vmfv4wdrggo1" path="res://MV Icons Letter Buttons/Individual Icons/green-!arrowdown.png" id="7_dcl8t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsbdh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6wdb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3huw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_280g2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cw7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as1ww"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=290829757]
+script = ExtResource("1_fsbdh")
+
+[node name="roll" type="TouchScreenButton" parent="." unique_id=952471997]
+position = Vector2(251, 141)
+texture_normal = ExtResource("2_n6wdb")
+shape = SubResource("CircleShape2D_fsbdh")
+action = "roll"
+
+[node name="left" type="TouchScreenButton" parent="." unique_id=15831579]
+position = Vector2(0, 130)
+texture_normal = ExtResource("3_g3huw")
+shape = SubResource("RectangleShape2D_n6wdb")
+action = "move_left"
+
+[node name="right" type="TouchScreenButton" parent="." unique_id=7065023]
+position = Vector2(45, 131)
+texture_normal = ExtResource("4_280g2")
+shape = SubResource("RectangleShape2D_g3huw")
+action = "move_right"
+
+[node name="up" type="TouchScreenButton" parent="." unique_id=1402535815]
+position = Vector2(22, 111)
+texture_normal = ExtResource("5_5cw7b")
+shape = SubResource("RectangleShape2D_280g2")
+action = "move_up"
+
+[node name="attack" type="TouchScreenButton" parent="." unique_id=678172437]
+position = Vector2(279, 140)
+texture_normal = ExtResource("6_as1ww")
+shape = SubResource("CircleShape2D_5cw7b")
+action = "attack"
+
+[node name="down" type="TouchScreenButton" parent="." unique_id=974483571]
+position = Vector2(23, 143)
+texture_normal = ExtResource("7_dcl8t")
+shape = SubResource("RectangleShape2D_as1ww")
+action = "move_down"
+
+[connection signal="pressed" from="roll" to="." method="_on_roll_pressed"]
+[connection signal="released" from="roll" to="." method="_on_roll_released"]
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]
+[connection signal="released" from="left" to="." method="_on_left_released"]
+[connection signal="pressed" from="right" to="." method="_on_right_pressed"]
+[connection signal="released" from="right" to="." method="_on_right_released"]
+[connection signal="pressed" from="up" to="." method="_on_up_pressed"]
+[connection signal="released" from="up" to="." method="_on_up_released"]
+[connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
+[connection signal="released" from="attack" to="." method="_on_attack_released"]
+[connection signal="pressed" from="down" to="." method="_on_down_pressed"]
+[connection signal="released" from="down" to="." method="_on_down_released"]
