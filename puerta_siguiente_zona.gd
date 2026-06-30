@@ -4,6 +4,10 @@ extends Area2D
 
 # Guardamos si este nivel en específico es libre o no
 var es_nivel_libre: bool = false
+var contador_canvas: CanvasLayer = null
+var contador_label: Label = null
+@export var contador_offset: Vector2 = Vector2(-90, -50)
+@export var usar_xform_inv: bool = false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -32,10 +36,61 @@ func _ready() -> void:
 
 	# Aseguramos el estado inicial de la puerta según los enemigos presentes
 	_update_door_state()
+	_actualizar_contador()
 
 # El estado de la puerta ahora se gestiona mediante señales `died` de los enemigos.
 # Se eliminó el polling periódico en `_process` para mejorar rendimiento.
 
+func _crear_label_contador() -> void:
+	if contador_label != null and is_instance_valid(contador_label):
+		return
+
+	contador_canvas = CanvasLayer.new()
+	contador_canvas.name = "ContadorEnemigosCanvas"
+	contador_canvas.layer = 100
+	get_tree().current_scene.add_child(contador_canvas)
+
+	contador_label = Label.new()
+	contador_label.name = "ContadorEnemigos"
+	contador_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	contador_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	contador_label.modulate = Color.WHITE
+	contador_label.scale = Vector2(1.0, 1.0)
+	contador_label.z_index = 100
+	contador_canvas.add_child(contador_label)
+
+func _actualizar_contador() -> void:
+	if not is_inside_tree():
+		return
+	
+	_crear_label_contador()
+	
+	if es_nivel_libre:
+		contador_label.visible = false
+		return
+	
+	var enemigos_restantes = contar_enemigos_vivos()
+	contador_label.visible = true
+	
+	if enemigos_restantes > 0:
+		contador_label.text = "Faltan " + str(enemigos_restantes) + " enemigos"
+		contador_label.modulate = Color(1.0, 0.85, 0.2, 1.0)
+	else:
+		contador_label.text = "¡Puerta lista!"
+		contador_label.modulate = Color(0.2, 1.0, 0.2, 1.0)
+	
+	# Posicionamos el Label (UI) en pantalla usando la transformación del canvas
+	if is_instance_valid(contador_label):
+		var camera = get_viewport().get_camera_2d()
+		if camera != null:
+			var vp_size = get_viewport().get_visible_rect().size
+			var screen_pos = (global_position - camera.global_position) * camera.zoom + vp_size * 0.5
+			contador_label.position = screen_pos + contador_offset
+		else:
+			contador_label.position = Vector2(20, 20)
+
+func _process(_delta: float) -> void:
+	_actualizar_contador()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -77,6 +132,7 @@ func _on_node_added(node: Node) -> void:
 
 func _on_enemy_died() -> void:
 	_update_door_state()
+	_actualizar_contador()
 
 
 func _update_door_state() -> void:
@@ -86,3 +142,5 @@ func _update_door_state() -> void:
 		modulate.a = 1.0
 	else:
 		modulate.a = 0.3
+	
+	_actualizar_contador()
