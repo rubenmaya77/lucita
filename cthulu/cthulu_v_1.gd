@@ -24,7 +24,6 @@ const FRICTION = 150
 func _ready() -> void:
 	if stats:
 		stats = stats.duplicate()
-		stats.no_health.connect(die)
 	hurtbox.hurt.connect(take_hit.call_deferred)
 
 func _physics_process(delta: float) -> void:
@@ -62,13 +61,24 @@ func die() -> void:
 	death_effect.global_position = global_position
 	queue_free()
 
+func heal_player() -> void:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if player != null and player.stats != null:
+		player.stats.heal(10)
+
 func take_hit(other_hitbox: Hitbox) -> void:
 	var hit_effect = HIT_EFFECT.instantiate()
 	get_tree().current_scene.add_child(hit_effect)
 	hit_effect.global_position = center.global_position
 	
 	if stats:
-		stats.health -= other_hitbox.damage
+		var was_alive = stats.health > 0
+		stats.take_damage(other_hitbox.damage)
+		if stats.health <= 0 and was_alive:
+			if other_hitbox.get_parent() is Player:
+				heal_player()
+			die()
+			return
 	
 	# Aplicamos la fuerza de empuje usando la dirección que viene de la espada
 	velocity = other_hitbox.knockback_direction * other_hitbox.knockback_amount

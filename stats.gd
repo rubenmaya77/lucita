@@ -17,6 +17,10 @@ func take_damage(amount: int) -> void:
 		print("[Stats] health <= 0, emitting no_health")
 		no_health.emit()
 
+func heal(amount: int) -> void:
+	health = clamp(health + amount, 0, max_health)
+	health_changed.emit(health)
+
 func set_max_health(value: int) -> void:
 	max_health = value
 	if health > max_health:

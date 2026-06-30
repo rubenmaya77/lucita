@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://celpjiji0u60p"]
 
 [ext_resource type="Script" uid="uid://cfgxoclb74pbs" path="res://cthulu/cthulu_v_1.gd" id="1_gnrj5"]
-[ext_resource type="Resource" uid="uid://8adjrfbor8so" path="res://cthulu/cthulu.tres" id="2_18xf4"]
+[ext_resource type="Resource" uid="uid://dfyx00ek60nct" path="res://cthulu/cthulu.tres" id="2_18xf4"]
 [ext_resource type="Texture2D" uid="uid://dfffmlspytjd8" path="res://PNG/fly/fly_1.png" id="3_3fmhs"]
 [ext_resource type="Texture2D" uid="uid://dwq5so5s8mdr5" path="res://PNG/fly/fly_2.png" id="4_20ffc"]
 [ext_resource type="Script" uid="uid://bd2edxcfsqqt1" path="res://damage_boxes/hurtbox.gd" id="4_djo08"]
@@ -147,7 +147,7 @@ radius = 20.09975
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7n17"]
 radius = 9.0
 
-[node name="buffy" type="CharacterBody2D" unique_id=1916363289]
+[node name="cthulu" type="CharacterBody2D" unique_id=1916363289]
 motion_mode = 1
 script = ExtResource("1_gnrj5")
 stats = ExtResource("2_18xf4")
