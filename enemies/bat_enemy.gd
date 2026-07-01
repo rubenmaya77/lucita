@@ -24,6 +24,8 @@ func _ready() -> void:
 	if stats:
 		stats = stats.duplicate()
 		stats.no_health.connect(die)
+	if name.begins_with("BatEnemy"):
+		add_to_group("bat_enemy")
 	hurtbox.hurt.connect(take_hit.call_deferred)
 
 func _physics_process(delta: float) -> void:
@@ -70,7 +72,10 @@ func take_hit(other_hitbox: Hitbox) -> void:
 	hit_effect.global_position = center.global_position
 	
 	if stats:
-		stats.health -= other_hitbox.damage
+		stats.take_damage(other_hitbox.damage)
+		if stats.health <= 0:
+			die()
+			return
 	
 	# Aplicamos la fuerza de empuje usando la dirección que viene de la espada
 	velocity = other_hitbox.knockback_direction * other_hitbox.knockback_amount

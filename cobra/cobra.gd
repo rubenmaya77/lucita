@@ -92,7 +92,10 @@ func die() -> void:
 
 func take_hit(other_hitbox: Hitbox) -> void:
 	if stats:
-		stats.health -= other_hitbox.damage
+		stats.take_damage(other_hitbox.damage)
+		if stats.health <= 0:
+			die()
+			return
 	
 	# Aplicamos la fuerza de empuje
 	velocity = other_hitbox.knockback_direction * other_hitbox.knockback_amount

@@ -21,7 +21,7 @@ func _ready() -> void:
 	if es_nivel_libre:
 		modulate.a = 1.0 # Brillo total porque no necesita limpiarse
 	elif contar_enemigos_vivos() > 0:
-		modulate.a = 0.3 # Opacidad baja si hay enemigos acechando
+		modulate.a = 0.3 # Opacidad baja si hay murciélagos acechando
 
 	# 3. Conectar señales de muerte de los enemigos ya presentes
 	var lista_enemigos = get_tree().get_nodes_in_group("enemies")
@@ -71,9 +71,9 @@ func _actualizar_contador() -> void:
 	
 	var enemigos_restantes = contar_enemigos_vivos()
 	contador_label.visible = true
-	
+
 	if enemigos_restantes > 0:
-		contador_label.text = "Faltan " + str(enemigos_restantes) + " enemigos"
+		contador_label.text = "Faltan " + str(enemigos_restantes) + " murciélagos"
 		contador_label.modulate = Color(1.0, 0.85, 0.2, 1.0)
 	else:
 		contador_label.text = "¡Puerta lista!"
@@ -117,7 +117,7 @@ func _on_body_entered(body: Node2D) -> void:
 # Función segura para contar los enemigos activos en la escena
 func contar_enemigos_vivos() -> int:
 	var contador = 0
-	var lista_enemigos = get_tree().get_nodes_in_group("enemies")
+	var lista_enemigos = get_tree().get_nodes_in_group("bat_enemy")
 	for enemigo in lista_enemigos:
 		if is_instance_valid(enemigo) and not enemigo.is_queued_for_deletion():
 			contador += 1
