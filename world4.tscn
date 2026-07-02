@@ -475,3 +475,6 @@ position = Vector2(-800, 774)
 
 [node name="cthulu7" parent="." unique_id=858616523 instance=ExtResource("15_a5ce6")]
 position = Vector2(1724, 263)
+
+[node name="rex2" parent="." unique_id=91534708 instance=ExtResource("14_neke2")]
+position = Vector2(-1935, -973)

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bh5y7lyr5e4bj"]
 
+[ext_resource type="Resource" uid="uid://dfyx00ek60nct" path="res://cthulu/cthulu.tres" id="2_dv4s4"]
 [ext_resource type="Texture2D" uid="uid://coi0rmg7m052t" path="res://LPC imp/walk - vanilla.png" id="3_vv5u6"]
 [ext_resource type="Texture2D" uid="uid://cuq66us1fgsog" path="res://shadows/small_shadow.png" id="4_fep5a"]
 [ext_resource type="Script" uid="uid://bd2edxcfsqqt1" path="res://damage_boxes/hurtbox.gd" id="5_oqgkw"]
@@ -165,6 +166,7 @@ collision_layer = 4
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("7_rex_script")
+stats = ExtResource("2_dv4s4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1920813261]
 texture = ExtResource("3_vv5u6")
