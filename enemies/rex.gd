@@ -23,6 +23,7 @@ const RECOIL_MULTIPLIER = 0.15
 @onready var navigation_agent_2d: NavigationAgent2D = $Marker2D/NavigationAgent2D
 
 func _ready() -> void:
+	add_to_group("rex")
 	if stats:
 		stats = stats.duplicate()
 		stats.no_health.connect(die)
@@ -54,6 +55,15 @@ func die() -> void:
 	var death_effect = DEATH_EFFECT.instantiate()
 	get_tree().current_scene.add_child(death_effect)
 	death_effect.global_position = global_position
+
+	var remaining_rex := 0
+	for enemy in get_tree().get_nodes_in_group("rex"):
+		if is_instance_valid(enemy) and enemy != self:
+			remaining_rex += 1
+
+	if remaining_rex == 0:
+		get_tree().call_deferred("change_scene_to_file", "res://Play/finish.tscn")
+
 	queue_free()
 
 func take_hit(other_hitbox: Hitbox) -> void:
